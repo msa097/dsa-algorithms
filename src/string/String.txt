@@ -1,0 +1,237 @@
+String
+    -String are integral part of programming language
+    - In Java we have "String" class for creating and manipulating string
+    - String class implement one of the interface "CharSequence" used for representing sequence of character
+    - String is basically an object that represents sequence of char values
+
+    For example, the word "sufiyan" is an array of characters 's', 'u', 'f', 'i', 'y', 'a', 'n.
+    Here "sufiyan" is nothing but a sequence of characters i.e. a string.
+
+How to create String object?
+    1. Using String Literal
+    2. Using new keyword
+
+1. Literal
+    In computer science, is a notation used to represent a value. Java string literal can be created and represented using double quotes,
+    All the characters and content can be added in between the double quotes.
+
+    String scalerAcad = "Scaler Academy";
+
+    Note: String in Java are stored in special space in heap called "String constant pool" or string pool
+
+    #String constant pool
+    --------------------
+    It is a pool or storage area in Java heap memory that is dedicated for storing string literals in Java.
+    Whenever we create a string, JVM (Java Virtual Machine) looks into the "string constant pool" to see if the same value is already present there
+    or not.
+
+    If it is present, then the address (or reference) of existing string object is stored in the reference variable and if it is not present there,
+    a new String object is created and stored inside the string pool. Then the reference of this newly-created string object is returned.
+
+    Eg.
+        String str1 = "Scaler";
+
+        // New String is not created.
+        // str2 is pointing to the old string value only.
+        String str2 = "Scaler";
+
+        Refer diagram-- src/images/string_constant_pool.png
+
+    In the above example, we created two strings using the string literal method but in the string constant pool
+    only one string object is created, why only one?
+
+        1. Because when str1 is initialized, JVM checked in the string constant pool for the string value Scaler
+        and as it was not present there, a new string object Scaler is created and stored inside the string constant pool.
+        2. When the String str2 is initialized, JVM again checks in the string constant pool for the string value Scaler,
+        and as it was already present there(because of str1) new string value is not created, instead str2 points to old value only.
+
+2. Be new keyword
+    -- We can also create a string by using the new keyword in Java.
+    -- The main difference between creating a string using string literals and the new keyword is that whenever the string is created with the new keyword
+    a new object of String is created in the heap memory outside the string constant pool.
+
+    -- All string objects created using the new keyword are allocated space in the heap memory (outside the string constant pool) irrespective of
+    whether the same valued strings are already present in the heap memory or not.
+
+    String stringName = new String("string_value");
+
+    -- Refer diagram src/images/string_new_referenct.png
+
+
+Methods in java
+1. int length() -- The length() method of string in Java is used to get the length of the string.
+    Eg.
+        String genre = "action";
+        int genreLength = genre.length();
+        System.out.println(genreLength); // 6
+
+2. char charAt(int index)
+        -- The charAt() method of string in Java accepts an index number as an argument and returns the
+        character at the given index number.
+        -- The indexing is from 0 to length-1, where length is the length of the string
+
+    Eg.
+        String str = "scaler academy";
+        char ch = str.charAt(7);
+        System.out.println(ch); // a
+
+3. String concat(String string1)
+        -- The concat() method of string in Java is used for concatenating two strings.
+    Eg.
+        String str1 = "scaler";
+        str1 = str1.concat(" academy");
+        System.out.println(str1); // scaler academy
+
+4. String substring(int beginIndex, int endIndex[optional])
+        -- String substring(int beginIndex, int endIndex[optional])
+        -- It accepts two values as index numbers i.e. starting index and ending index.
+        -- The starting index is inclusive while the ending index is exclusive which simply means that
+        the substring part will start from the index beginIndex till endIndex - 1
+
+    Eg.
+        String str = "scaler academy";
+        String str1 = str.substring(0, 11);
+        String str2 = str.substring(3);
+        System.out.println(str1); // scaler acad
+        System.out.println(str2); // ler academy (from index 3 to 13 both inclusive)
+
+5. String equals(String anotherString)
+        -- The equals() method of string in Java is used to verify if both the strings are equal or not
+        -- The equals method accepts another string as an argument and then checks for the equality of both the strings.
+        If both the strings are equal, true is returned else false is returned.
+
+    Eg. String str = "scaler";
+        String str1 = "SCALER";
+        String str2 = "scaler";
+        String str3 = "topics";
+        System.out.println(str.equals(str1));// false
+        System.out.println(str.equals(str2));// true
+        System.out.println(str.equals(str3));// false
+
+6. String contains(String substring)
+        -- The contains() method of string in Java is used to verify if the string contains the specified part of the string or not.
+        It returns true if it contains that part and false otherwise.
+        -- The main difference between the equals() method and the contains() method is that the equals method checks the whole string for equality
+        while the contains method returns true as soon as it encounters a substring of the given string same as specified in the argument of the contains() method.
+        If no such substring is found, it returns false.
+
+    Eg.
+        String str = "Follow scaler on Linkedin";
+
+        // 1st print statement
+        System.out.println(str.contains("on Linkedin")); // true
+
+        // 2nd print statement
+        System.out.println(str.contains("Twitter")); // false
+
+        // 3rd print statement
+        System.out.println(str.contains("Follow")); // true
+
+        // 4th print statement
+        System.out.println(str.contains("follow")); // false
+
+
+7. String join(CharSequence joiner, String st1, String str2, String str3...)
+        --The join() method of string in Java as the name suggests is used to join a group of strings using the joiner between them.
+        The joiner variable can be any character, string or a sequence of characters.
+    Eg.
+        String strJoin = String.join(" ","Have","a","Nice","day");
+        System.out.println(strJoin);
+
+        String str1Join = String.join("-","Have","a","Nice","day");
+        System.out.println(str1Join);
+
+        String str2Join = String.join("/","19","02","2022");
+        System.out.println(str2Join);
+
+        String str3Join = String.join("::","12","18","55");
+        System.out.println(str3Join);
+
+8. int compareTo(String string1, String string2)
+        -- The compareTo() method of string in Java compares the given strings in the order of occurrence in the dictionary.
+        The comparison is solely based on the Unicode value of the characters of the strings.
+    Eg.
+        String str1 = "Scaler Academy";
+        String str2 = "Scaler Academy";
+        String str3 = "Academy Scaler";
+
+        int result1 = str1.compareTo(str2);
+        System.out.println(result1);  // 0
+
+        // comparing str1 with str3
+        int result2 = str1.compareTo(str3);
+        System.out.println(result2);  // 18
+
+        // comparing str3 with str1
+        int result3 = str3.compareTo(str1);
+        System.out.println(result3);  // -18
+
+
+9. String toUpperCase()
+    -- The toUpperCase() method of string in Java is used to convert the lowercase characters of the string to the uppercase(or capital) characters.
+
+    Eg.
+        String str = "keyboard";
+        String strUpper = str.toUpperCase();
+        System.out.println(strUpper); // KEYBOARD
+
+10. String toLowerCase()
+    The toLowerCase() method of string in Java is used to convert all the characters of the string to the lowercase(or small) characters.
+
+    Eg.
+        String str = "KEyBOArD";
+        String strLower = str.toLowerCase();
+        System.out.println(strLower); // keyboard
+
+11. String trim()
+    The trim() method of string in Java is used to trim (or remove) the extra white spaces from the specified string from both the ends.
+
+    Eg.
+        String str = "       Coding is        ";
+        System.out.println(str + " awesome");   //        Coding is         awesome
+        str = str.trim();
+        System.out.println(str + " awesome");   // Coding is awesome
+
+
+12. String replace(char oldChar, char newChar)
+    The replace() method of string in Java as the name suggests is used to replace all the specified character of the string with another character.
+    Eg.
+        String str = "Hi, i will be replaced with a";
+        str = str.replace('i','a');
+        System.out.println(str); // Ha, a wall be replaced wath a
+
+13. Creating Format Strings
+    The format() method is used to format the string as per the passed argument.
+    This method accepts two arguments: format string and argument(s), then returns the formatted string.
+
+    Eg.
+        String str = "India";
+        String str1 = String.format("Country: %s", str);
+        System.out.println(str1); // Country: India
+
+    Explanation: In the above example, we have used the %s format specifier which is reserved for strings,
+    Henced India got printed in place of %s. Similarly, there are format specifiers for int(%d), float(%f), etc.
+    which can be used for formatting of these data type values.
+
+14. Java Strings: Mutable or Immutable
+    Strings in Java are immutable/unchangeable which simply means that the string value can not be changed once it gets initialized(or created).
+
+    Why?
+        because in the String constant pool, it is possible that a single string object can have multiple references as we have seen at the beginning
+    of this article.
+        In case we want to change the value of one of the referring variables to another value, it can affect the values of other strings or reference
+    variables.
+        Hence to avoid these conflicts, String objects are immutable/unchangeable in Java.
+
+
+
+
+
+
+
+
+
+
+
+
+
